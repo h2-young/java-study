@@ -4,8 +4,7 @@ public class Rectangle extends Shape implements Resizable {
 
 	@Override
 	public void resize(double rate) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("g");
 	}
 
 	@Override
