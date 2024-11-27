@@ -14,5 +14,6 @@
   	<module>chapter04</module>
   	<module>designpattern-practices</module>
   	<module>io</module>
+  	<module>netwrk</module>
   </modules>
 </project>
