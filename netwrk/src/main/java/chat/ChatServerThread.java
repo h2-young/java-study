@@ -65,9 +65,9 @@ public class ChatServerThread extends Thread {
 	private void join(String nickname, PrintWriter user) {
 		this.nickname = nickname;
 		printWriters.add(user);
-		log(nickname + "님이 입장하였습니다");
+		log(nickname + "님이 입장 하였습니다");
 		user.println("입장: 확인");
-		broadcast(nickname + "님이 입장하였습니다.");
+		broadcast(nickname + "님이 입장 하였습니다.");
 	}
 
 	private void message(String message) {
@@ -77,8 +77,8 @@ public class ChatServerThread extends Thread {
 	}
 
 	private void quit(PrintWriter user) {
-		broadcast(nickname + "님이 채팅방을 나갔어요.");
-		log(nickname + "님이 퇴장하였습니다.");
+		broadcast(nickname + "님이 퇴장 하였습니다.");
+		log(nickname + "님이 퇴장 하였습니다.");
 		printWriters.remove(user);
 	}
 
