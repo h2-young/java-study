@@ -11,60 +11,57 @@ import java.net.SocketException;
 import java.util.Scanner;
 
 public class EchoClient {
-	private static final String SERVER_IP = "192.168.0.11";
+	private static final String SERVER_IP = "192.168.0.211";
 	
 	public static void main(String[] args) {
+		Scanner scanner = null;
 		Socket socket = null;
-		Scanner sc = null;
 		
 		try {
-			sc = new Scanner(System.in);
-			
-			// 1. 소켓 생성
+			scanner = new Scanner(System.in, "utf-8");
 			socket = new Socket();
-			
-			// 2. 서버 연결
-			socket.connect(new InetSocketAddress(SERVER_IP, 60000));
+
+			socket.connect(new InetSocketAddress(SERVER_IP, EchoServer.PORT));
 			
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
-			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			
+			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+
 			while(true) {
 				System.out.print(">>");
-				String line = sc.nextLine();
+				String line = scanner.nextLine();
 				
 				if("exit".equals(line)) {
 					break;
 				}
 				
 				pw.println(line);
+
 				String data = br.readLine();
-				
-				if (data == null) {
+				if(data == null) {
 					log("closed by server");
 					break;
 				}
 				System.out.println("<<" + data);
-			} 
-		} catch (SocketException e) {
+			}
+		} catch(SocketException e) {
 			log("Socket Exception" + e);
 		} catch (IOException e) {
-			log("[client] error:" + e);
+			log("error:" + e);
 		} finally {
 			try {
+				if(scanner != null) { 
+					scanner.close();
+				}
 				if(socket != null && !socket.isClosed()) {
 					socket.close();
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
 	public static void log(String message) {
-		System.out.println("[Echo client] "+ message);
+		System.out.println("[Echo Client] " + message);
 	}
-
 }

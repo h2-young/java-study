@@ -17,6 +17,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>practice05</finalName>
+		<finalName>network</finalName>
 	</build>
 </project>

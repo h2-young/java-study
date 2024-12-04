@@ -24,5 +24,4 @@ public class ChatClientApp {
 
 		new ChatWindow(name).show();
 	}
-
 }
